@@ -2,7 +2,6 @@
 
 PWA (Progressive Web App) untuk pencatatan keuangan rumah tangga. Gratis, open source, dan bisa di-deploy sendiri di GitHub Pages tanpa biaya server.
 
-![Preview](assets/preview.png)
 
 ## ✨ Fitur
 
