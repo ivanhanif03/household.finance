@@ -54,7 +54,7 @@ household-finance/
 
 4. Di sheet **Transaksi**, buat header di baris 1:
    ```
-   A: Tanggal | B: Jenis | C: Kategori | D: Deskripsi | E: Nominal | F: Dompet | G: Detail | H: Kepemilikan
+   A: Tanggal | B: Jenis | C: Kategori | D: Deskripsi | E: Nominal | F: Dompet | G: Detail | H: Kepemilikan | I: TipePengeluaran
    ```
 
 5. Di sheet **Budget**, buat header di baris 1:
