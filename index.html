@@ -14,7 +14,8 @@
   <link rel="manifest" href="manifest.json" />
   <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet" />
   <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="assets/style.css" />
+  <link rel="stylesheet" href="style.css" />
+  <link rel="stylesheet" href="tipe-pengeluaran.css" />
 </head>
 <body>
 
@@ -143,10 +144,21 @@
       <div id="panelTrx">
         <div class="mb-3">
           <label class="form-label">Jenis Transaksi</label>
-          <select id="jenis" class="form-select">
+          <select id="jenis" class="form-select" onchange="toggleTipePengeluaran()">
             <option value="Pendapatan">💰 Pendapatan</option>
             <option value="Pengeluaran">💸 Pengeluaran</option>
           </select>
+        </div>
+        <div class="mb-3" id="tipePengeluaranWrap" style="display:none">
+          <label class="form-label">Tipe Pengeluaran</label>
+          <select id="tipePengeluaran" class="form-select" onchange="onTipePengeluaranChange(this)">
+            <option value="Rutin">🔄 Rutin — masuk budget bulanan</option>
+            <option value="Tetap">📌 Tetap — tidak masuk budget bulanan</option>
+          </select>
+          <small class="text-muted mt-1" style="display:block">
+            <b>Rutin</b>: makan, transport, belanja, dll<br>
+            <b>Tetap</b>: bayar wifi, iuran, cicilan, dll
+          </small>
         </div>
         <div class="mb-3">
           <label class="form-label">Kategori</label>
@@ -254,6 +266,24 @@
         <div class="summary-card"><h6>📉 Pengeluaran</h6><h3 class="expense" id="totalPengeluaran">Rp 0</h3></div>
       </div>
     </div>
+    <!-- BREAKDOWN PENGELUARAN -->
+    <div class="pengeluaran-breakdown">
+      <div class="breakdown-item rutin">
+        <div class="breakdown-icon">🔄</div>
+        <div class="breakdown-info">
+          <div class="breakdown-label">Rutin <span class="breakdown-hint">(masuk budget)</span></div>
+          <div class="breakdown-amount" id="totalPengeluaranRutin">Rp 0</div>
+        </div>
+      </div>
+      <div class="breakdown-divider"></div>
+      <div class="breakdown-item tetap">
+        <div class="breakdown-icon">📌</div>
+        <div class="breakdown-info">
+          <div class="breakdown-label">Tetap <span class="breakdown-hint">(di luar budget)</span></div>
+          <div class="breakdown-amount" id="totalPengeluaranTetap">Rp 0</div>
+        </div>
+      </div>
+    </div>
 
     <!-- NOTIF BANNER -->
     <div id="notifBanner" class="notif-banner" style="display:none">
@@ -277,6 +307,7 @@
         <button id="btnBudget" onclick="setBudget()">Set</button>
       </div>
       <small>💡 Periode gajian: tanggal 25 s/d 24 bulan berikutnya</small>
+      <small class="budget-note">🔄 Hanya pengeluaran <b>Rutin</b> yang masuk hitungan budget</small>
     </div>
 
     <!-- RIWAYAT -->
